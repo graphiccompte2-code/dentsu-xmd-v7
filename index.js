@@ -163,20 +163,9 @@ async function startSession(sessionId, sessionEnvValue) {
 
   global.sessions.set(sessionId, sock);
 
-  // Pairing
+  // Pairing is handled via the web dashboard (/)
   if (!sock.authState.creds.registered) {
-    logSys(`[${sessionId}] No session — requesting pairing code...`);
-    const num = await askNumber(sessionId);
-    setTimeout(async () => {
-      try {
-        const code = await sock.requestPairingCode(num);
-        console.log(`\n  ${C.accent('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')}`);
-        console.log(`  ${C.sys('[' + sessionId + ']')} Pairing code for ${C.cyan(num)}:`);
-        console.log(`  ${C.accent.bold('  ' + code)}`);
-        console.log(`  ${C.dim('WhatsApp → Appareils connectés → Lier avec un numéro')}`);
-        console.log(`  ${C.accent('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')}\n`);
-      } catch (e) { logErr(`[${sessionId}] Pairing error: ${e.message}`); }
-    }, 3000);
+    logSys(`[${sessionId}] Session non connectée — ouvre le dashboard web et entre ton numéro pour obtenir le code de jumelage.`);
   }
 
   // Connection events
