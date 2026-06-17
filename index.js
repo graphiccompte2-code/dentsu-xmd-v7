@@ -17,6 +17,7 @@ const {
   DisconnectReason,
   jidNormalizedUser,
   getContentType,
+  Browsers,
 } = require('@whiskeysockets/baileys');
 
 const { loadPlugins, watchPlugins, plugins, registerPlugin } = require('./fetchPlugins');
@@ -158,7 +159,7 @@ async function startSession(sessionId, sessionEnvValue) {
     markOnlineOnConnect: true,
     syncFullHistory: false,
     generateHighQualityLinkPreview: true,
-    browser: [config.BOT_NAME, 'Chrome', '120.0.0'],
+    browser: Browsers.macOS('Chrome'),
   });
 
   // ── WS readiness promise ─────────────────────────────────
