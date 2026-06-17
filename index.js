@@ -29,7 +29,7 @@ global.botStartTime    = Date.now();
 global.registerPlugin  = registerPlugin;
 global.plugins         = plugins;
 global.config          = config;
-global.sessions        = new Map(); // id -> sock
+global.sessions        = new Map(); // id -> { sock, wsReady: Promise }
 
 // ─── Logger ──────────────────────────────────────────────────
 const C = {
@@ -161,15 +161,25 @@ async function startSession(sessionId, sessionEnvValue) {
     browser: [config.BOT_NAME, 'Chrome', '120.0.0'],
   });
 
-  global.sessions.set(sessionId, sock);
+  // ── WS readiness promise ─────────────────────────────────
+  // Resolves as soon as the first connection.update fires,
+  // meaning the WebSocket link to WhatsApp servers is up
+  // and requestPairingCode() can safely be called.
+  let markWsReady;
+  const wsReady = new Promise(resolve => { markWsReady = resolve; });
 
-  // Pairing is handled via the web dashboard (/)
+  // Store { sock, wsReady } so dashboard can await WS before pairing
+  global.sessions.set(sessionId, { sock, wsReady });
+
   if (!sock.authState.creds.registered) {
     logSys(`[${sessionId}] Session non connectée — ouvre le dashboard web et entre ton numéro pour obtenir le code de jumelage.`);
   }
 
   // Connection events
   sock.ev.on('connection.update', async ({ connection, lastDisconnect }) => {
+    // Signal WS readiness on the very first event (socket reached WhatsApp servers)
+    markWsReady();
+
     if (connection === 'open') {
       const botJid = jidNormalizedUser(sock.user.id);
       logOk(`[${sessionId}] Connected as ${botJid}`);
