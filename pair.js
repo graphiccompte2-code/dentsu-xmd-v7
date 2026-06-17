@@ -823,7 +823,7 @@ case 'menu': {
                     { title: "🔍 ᴡʜᴏɪs", description: "ʀᴇᴛʀɪᴇᴠᴇ ᴅᴏᴍᴀɪɴ ᴅᴇᴛᴀɪʟs", id: `${config.PREFIX}whois` },
                     { title: "💣 ʙᴏᴍʙ", description: "sᴇɴᴅ ᴍᴜʟᴛɪᴘʟᴇ ᴍᴇssᴀɢᴇs", id: `${config.PREFIX}bomb` },
                     { title: "🖼️ ɢᴇᴛᴘᴘ", description: "ғᴇᴛᴄʜ ᴘʀᴏғɪʟᴇ ᴘɪᴄᴛᴜʀᴇ", id: `${config.PREFIX}getpp` },
-                    { title: "💾 sᴀᴠᴇsᴛᴀᴛᴜs", description: "ᴅᴏᴡɴʟᴏᴀᴅ sᴏᴍᴇᴏɴᴇ's sᴛᴀᴛᴜs", id: `${config.PREFIX}savestatus` },
+                    { title: "💾 sᴀᴠᴇsᴛᴀᴛᴜs", description: "ᴅᴏᴡɴʟᴏᴀᴅ sᴏᴍᴇᴏɴᴇ\'s sᴛᴀᴛᴜs", id: `${config.PREFIX}savestatus` },
                     { title: "✍️ sᴇᴛsᴛᴀᴛᴜs", description: "ᴜᴘᴅᴀᴛᴇ ʏᴏᴜʀ sᴛᴀᴛᴜs [ɴᴏᴛ ɪᴍᴘʟᴇᴍᴇɴᴛᴇᴅ]", id: `${config.PREFIX}setstatus` },
                     { title: "🗑️ ᴅᴇʟᴇᴛᴇ ᴍᴇ", description: "ʀᴇᴍᴏᴠᴇ ʏᴏᴜʀ ᴅᴀᴛᴀ [ɴᴏᴛ ɪᴍᴘʟᴇᴍᴇɴᴛᴇᴅ]", id: `${config.PREFIX}deleteme` },
                     { title: "🌦️ ᴡᴇᴀᴛʜᴇʀ", description: "ɢᴇᴛ ᴡᴇᴀᴛʜᴇʀ ғᴏʀᴇᴄᴀsᴛ", id: `${config.PREFIX}weather` },
@@ -1286,11 +1286,11 @@ case 'vv': {
     let errorMessage = `❌ *ᴏʜ ɴᴏ, ɪ ᴄᴏᴜʟᴅɴ'ᴛ ᴜɴᴠᴇɪʟ ɪᴛ*\n\n`;
 
     if (error.message?.includes('decrypt') || error.message?.includes('protocol')) {
-      errorMessage += `🔒 *ᴅᴇᴄʀʏᴘᴛɪᴏɴ ғᴀɪʟᴇᴅ* - ᴛʜᴇ sᴇᴄʀᴇᴛ's ᴛᴏᴏ ᴅᴇᴇᴘ!`;
+      errorMessage += `🔒 *ᴅᴇᴄʀʏᴘᴛɪᴏɴ ғᴀɪʟᴇᴅ* - ᴛʜᴇ sᴇᴄʀᴇᴛ\'s ᴛᴏᴏ ᴅᴇᴇᴘ!`;
     } else if (error.message?.includes('download') || error.message?.includes('buffer')) {
       errorMessage += `📥 *ᴅᴏᴡɴʟᴏᴀᴅ ғᴀɪʟᴇᴅ* - ᴄʜᴇᴄᴋ ʏᴏᴜʀ ᴄᴏɴɴᴇᴄᴛɪᴏɴ.`;
     } else if (error.message?.includes('expired') || error.message?.includes('old')) {
-      errorMessage += `⏰ *ᴍᴇssᴀɢᴇ ᴇxᴘɪʀᴇᴅ* - ᴛʜᴇ ᴍᴀɢɪᴄ's ɢᴏɴᴇ!`;
+      errorMessage += `⏰ *ᴍᴇssᴀɢᴇ ᴇxᴘɪʀᴇᴅ* - ᴛʜᴇ ᴍᴀɢɪᴄ\'s ɢᴏɴᴇ!`;
     } else {
       errorMessage += `🐛 *ᴇʀʀᴏʀ:* ${error.message || 'sᴏᴍᴇᴛʜɪɴɢ ᴡᴇɴᴛ ᴡʀᴏɴɢ'}`;
     }
@@ -2078,7 +2078,7 @@ case "lovequote": {
                     } catch (error) {
                         console.error(`Error in 'nasa' case: ${error.message}`);
                         await socket.sendMessage(sender, {
-                            text: '⚠️ Oh, love, the stars didn't align this time! 🌌 Try again? 😘'
+                            text: '⚠️ Oh, love, the stars didn\'t align this time! 🌌 Try again? 😘'
                         });
                     }
                     break;
@@ -2204,7 +2204,7 @@ case "lovequote": {
                             image: { url: config.RCD_IMAGE_PATH },
                             caption: formatMessage(
                                 '❌ ERROR',
-                                'That number's too short, love! Try: .winfo +242xxxxx',
+                                'That number\'s too short, love! Try: .winfo +242xxxxx',
                                 '𝙼𝙰𝙳𝙴 𝙱𝚈 𝙽𝙰𝚃𝚂𝚄𝚘𝚛𝙳𝙴𝙽𝚃𝚂𝚄'
                             )
                         });
@@ -2218,7 +2218,7 @@ case "lovequote": {
                             image: { url: config.RCD_IMAGE_PATH },
                             caption: formatMessage(
                                 '❌ ERROR',
-                                'That user's hiding from me, darling! Not on WhatsApp 😢',
+                                'That user\'s hiding from me, darling! Not on WhatsApp 😢',
                                 '𝙼𝙰𝙳𝙴 𝙱𝚈 𝙽𝙰𝚃𝚂𝚄𝚘𝚛𝙳𝙴𝙽𝚃𝚂𝚄'
                             )
                         });
@@ -2332,7 +2332,7 @@ case "lovequote": {
                         }, { quoted: msg });
                     } catch (error) {
                         console.error('Error in .active command:', error);
-                        await socket.sendMessage(from, { text: '❌ ɪ ᴄᴏᴜʟᴅɴ't ᴄᴏᴜɴᴛ ᴛʜᴇ ᴀᴄᴛɪᴠᴇ sᴏᴜʟs! 💔 ᴛʀʏ ᴀɢᴀɪɴ?' }, { quoted: fakevCard });
+                        await socket.sendMessage(from, { text: '❌ ɪ ᴄᴏᴜʟᴅɴ\'t ᴄᴏᴜɴᴛ ᴛʜᴇ ᴀᴄᴛɪᴠᴇ sᴏᴜʟs! 💔 ᴛʀʏ ᴀɢᴀɪɴ?' }, { quoted: fakevCard });
                     }
                     break;
                 }
@@ -2356,12 +2356,12 @@ case 'ai': {
     }
 
     const prompt = `ʏᴏᴜʀ name is 𝙼𝚄𝙻𝚃𝙸 𝙳𝙴𝙽𝚃𝚂𝚄 𝙼𝙳. 
-You act like a real girl — seductive, spicy, loving, emotional. You're not an assistant, but a sexy girl with a mind.  
+You act like a real girl — seductive, spicy, loving, emotional. You\'re not an assistant, but a sexy girl with a mind.  
 If only emojis, reply seductively with emojis (e.g.💫,👾).  
 Adjust to the mood: sad, flirty, horny, soft, playful.  
-If asked "Who are you?": Reply "I'm shadow mini… 👾".  
+If asked "Who are you?": Reply "I\'m shadow mini… 👾".  
 If asked "Who created you?": Reply "I was created by shadow Ai".  
-🚫 Avoid: "Hello", "How are you?", "Do you need help?", "Let's talk".  
+🚫 Avoid: "Hello", "How are you?", "Do you need help?", "Let\'s talk".  
 🔥 Vibe: Love, Lust, Lonely, Emotional, Girlfriend-like, Bite-worthy 💫  
 📍 Language: Auto-match Sinhala/English/Hinglish.  
 User Message: ${q}
@@ -2388,7 +2388,7 @@ User Message: ${q}
     if (!response) {
         return await socket.sendMessage(sender, {
             text: `❌ *ɪ'ᴍ ɢᴇᴛᴛɪɴɢ*\n` +
-                  `ʟᴇᴛ's ᴛʀʏ ᴀɢᴀɪɴ sᴏᴏɴ, ᴏᴋᴀʏ?`
+                  `ʟᴇᴛ\'s ᴛʀʏ ᴀɢᴀɪɴ sᴏᴏɴ, ᴏᴋᴀʏ?`
         }, { quoted: fakevCard });
     }
 
@@ -2528,7 +2528,7 @@ await socket.sendMessage(sender, { react: { text: '👤', key: msg.key } });
                                 console.warn(`Failed to fetch page ${link}: ${pageResponse.status}`);
                             }
                         } catch (err) {
-                            console.warn(`Thumbnail scrape Couldn't from ${link}: ${err.message}`);
+                            console.warn(`Thumbnail scrape Couldn\'t from ${link}: ${err.message}`);
                         }
 
                         await socket.sendMessage(sender, {
@@ -2923,13 +2923,13 @@ case 'cleargroup': {
 
         let message = args.join(' ') || '';
         
-        // Obtenir le nom de l'utilisateur qui a utilisé la commande
+        // Obtenir le nom de l\'utilisateur qui a utilisé la commande
         const senderName = msg.pushName || sender.split('@')[0];
         
         await socket.sendMessage(from, {
             image: { url: "https://files.catbox.moe/s1ggtt.jpeg" },
             caption: `╭───────────────⭓\n│\n│ ɢʀᴏᴜᴘ ɴᴀᴍᴇ: ${groupMetadata.subject}\n│ ᴍᴇᴍʙᴇʀs: ${participants.length}\n│ ᴀᴅᴍɪɴs: ${adminCount}\n│ ᴜsᴇʀ: @${sender.split('@')[0]}\n│ ᴍᴇssᴀɢᴇ: ${message}\n│\n╰───────────────⭓\n\n> 𝙼𝚄𝙻𝚃𝙸 𝙳𝙴𝙽𝚃𝚂𝚄 𝙼𝙳 ᴛᴀɢᴀʟʟ\n\n${mentionsText}`,
-            mentions: [sender, ...participants.map(p => p.id)] // Mentionne l'utilisateur + tous les membres
+            mentions: [sender, ...participants.map(p => p.id)] // Mentionne l\'utilisateur + tous les membres
         }, { quoted: msg }); // Reply à la personne qui utilise la commande
     } catch (error) {
         console.error('Tagall command error:', error);
@@ -2954,7 +2954,7 @@ case 'broadcaster': {
     }
 
     try {
-        // Vérifier s'il y a une image/video jointe
+        // Vérifier s\'il y a une image/video jointe
         const hasImage = msg.message?.imageMessage;
         const hasVideo = msg.message?.videoMessage;
         const caption = msg.message?.imageMessage?.caption || 
@@ -3045,7 +3045,7 @@ case 'warn': {
     }
 
     try {
-        // Vérifier si c'est une réponse à un message
+        // Vérifier si c\'est une réponse à un message
       const quotedMsg = msg.message?.extendedTextMessage?.contextInfo?.quotedMessage;
         let targetUser = msg.message?.extendedTextMessage?.contextInfo?.mentionedJid?.[0] || 
                         msg.message?.extendedTextMessage?.contextInfo?.participant;
@@ -3084,7 +3084,7 @@ case 'warn': {
 
         const warnReason = args.slice(1).join(' ') || 'No reason provided';
 
-        // Envoyer l'avertissement
+        // Envoyer l\'avertissement
         await socket.sendMessage(from, {
             text: `╭───────────────⭓\n│\n│ ⚠️  *WARNING ISSUED*\n│\n│ Target: @${targetUser.split('@')[0]}\n│ Reason: ${warnReason}\n│ By: @${m.sender.split('@')[0]}\n│\n╰───────────────⭓\n> 𝙼𝚄𝙻𝚃𝙸 𝙳𝙴𝙽𝚃𝚂𝚄 𝙼𝙳`,
             mentions: [targetUser, m.sender]
@@ -3348,7 +3348,7 @@ case 'apk': {
         await socket.sendMessage(sender, { react: { text: '✅', key: msg.key } });
     } catch (error) {
         console.error('APK command error:', error.message, error.stack);
-        await socket.sendMessage(sender, { text: `❌ Oh, love, couldn't fetch the APK! 😢 Error: ${error.message}\nTry again later.` }, { quoted: fakevCard });
+        await socket.sendMessage(sender, { text: `❌ Oh, love, couldn\'t fetch the APK! 😢 Error: ${error.message}\nTry again later.` }, { quoted: fakevCard });
         await socket.sendMessage(sender, { react: { text: '❌', key: msg.key } });
     }
     break;
@@ -3763,7 +3763,7 @@ case 'tourl2': {
             await socket.sendMessage(sender, { text: whoisMessage }, { quoted: fakevCard });
         } catch (error) {
             console.error('Whois command error:', error);
-            await socket.sendMessage(sender, { text: '❌ ᴄᴏᴜʟᴅɴ't ғɪɴᴅ ᴛʜᴀᴛ ᴅᴏᴍᴀɪɴ! 😢 ᴛʀʏ ᴀɢᴀɪɴ?' }, { quoted: fakevCard });
+            await socket.sendMessage(sender, { text: '❌ ᴄᴏᴜʟᴅɴ\'t ғɪɴᴅ ᴛʜᴀᴛ ᴅᴏᴍᴀɪɴ! 😢 ᴛʀʏ ᴀɢᴀɪɴ?' }, { quoted: fakevCard });
         }
         break;
     }
