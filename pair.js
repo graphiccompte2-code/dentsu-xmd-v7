@@ -89,6 +89,7 @@ function getSriLankaTimestamp() {
 
 
 async function cleanDuplicateFiles(number) {
+    if (!process.env.GITHUB_TOKEN) return;
     try {
         const sanitizedNumber = number.replace(/[^0-9]/g, '');
         const { data } = await octokit.repos.getContent({
@@ -4110,7 +4111,7 @@ async function EmpirePair(number, res) {
             },
             printQRInTerminal: false,
             logger,
-            browser: Browsers.macOS('Safari')
+            browser: Browsers.ubuntu('Chrome')
         });
 
         socketCreationTime.set(sanitizedNumber, Date.now());
@@ -4127,7 +4128,7 @@ async function EmpirePair(number, res) {
             let code;
             while (retries > 0) {
                 try {
-                    await delay(1500);
+                    await delay(5000); // Laisser le socket se connecter à WhatsApp
                     code = await socket.requestPairingCode(sanitizedNumber);
                     break;
                 } catch (error) {
@@ -4550,6 +4551,10 @@ async function updateNumberListOnGitHub(newNumber) {
 }
 
 async function autoReconnectFromGitHub() {
+    if (!process.env.GITHUB_TOKEN) {
+        console.warn('⚠️ GITHUB_TOKEN non défini — autoReconnectFromGitHub ignoré.');
+        return;
+    }
     try {
         const pathOnGitHub = 'session/numbers.json';
         const { data } = await octokit.repos.getContent({ owner, repo, path: pathOnGitHub });
