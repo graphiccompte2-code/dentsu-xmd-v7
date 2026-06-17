@@ -132,8 +132,6 @@ const PAIR_HTML = `<!DOCTYPE html>
     background-image: radial-gradient(ellipse at 20% 50%, rgba(0,255,224,0.03) 0%, transparent 60%),
                       radial-gradient(ellipse at 80% 20%, rgba(189,147,249,0.04) 0%, transparent 60%);
   }
-
-  /* ── NAV ── */
   nav {
     display: flex; gap: 8px; margin-bottom: 40px;
     background: var(--panel); border: 1px solid var(--border);
@@ -141,62 +139,44 @@ const PAIR_HTML = `<!DOCTYPE html>
   }
   nav a {
     padding: 8px 24px; border-radius: 50px; text-decoration: none;
-    font-weight: 600; font-size: 0.9rem; color: var(--muted);
-    transition: all 0.2s;
+    font-weight: 600; font-size: 0.9rem; color: var(--muted); transition: all 0.2s;
   }
   nav a.active { background: var(--accent); color: #000; }
   nav a:not(.active):hover { color: var(--text); }
-
-  /* ── LOGO ── */
   .logo { font-family: 'Orbitron', monospace; font-size: 2rem; font-weight: 900;
     color: var(--accent); text-shadow: var(--glow); letter-spacing: 3px; margin-bottom: 6px; }
   .tagline { color: var(--muted); font-size: 0.85rem; margin-bottom: 40px; letter-spacing: 1px; }
-
-  /* ── CARD ── */
   .card {
-    width: 100%; max-width: 480px;
+    width: 100%; max-width: 520px;
     background: var(--panel); border: 1px solid var(--border);
     border-radius: 20px; padding: 36px 32px;
-    box-shadow: 0 8px 40px rgba(0,0,0,0.4);
+    box-shadow: 0 8px 40px rgba(0,0,0,0.4); margin-bottom: 20px;
   }
   .card-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 6px; color: var(--text); }
   .card-sub   { color: var(--muted); font-size: 0.85rem; margin-bottom: 28px; line-height: 1.5; }
-
-  /* ── FORM ── */
   .field { margin-bottom: 20px; }
   label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--muted);
     text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
-  .phone-wrap { display: flex; align-items: center; gap: 10px; }
-  .flag { font-size: 1.4rem; }
-  input[type=tel], input[type=text] {
+  input[type=tel] {
     width: 100%; padding: 14px 16px; border-radius: 12px;
     background: #0a0c14; border: 1px solid var(--border);
     color: var(--text); font-size: 1rem; font-family: 'Share Tech Mono', monospace;
-    outline: none; transition: border-color 0.2s, box-shadow 0.2s;
-    letter-spacing: 1px;
+    outline: none; transition: border-color 0.2s, box-shadow 0.2s; letter-spacing: 1px;
   }
-  input[type=tel]:focus, input[type=text]:focus {
-    border-color: var(--accent); box-shadow: 0 0 0 3px rgba(0,255,224,0.1);
-  }
+  input[type=tel]:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(0,255,224,0.1); }
   input::placeholder { color: var(--muted); }
-
-  /* ── BUTTON ── */
   button {
     width: 100%; padding: 14px; border-radius: 12px; border: none;
     background: var(--accent); color: #000;
     font-family: 'Orbitron', monospace; font-size: 0.9rem; font-weight: 700;
     cursor: pointer; letter-spacing: 1px;
-    transition: opacity 0.2s, transform 0.1s, box-shadow 0.2s;
-    box-shadow: var(--glow);
+    transition: opacity 0.2s, transform 0.1s, box-shadow 0.2s; box-shadow: var(--glow);
   }
   button:hover  { opacity: 0.9; box-shadow: 0 0 30px rgba(0,255,224,0.5); }
   button:active { transform: scale(0.98); }
   button:disabled { opacity: 0.4; cursor: not-allowed; }
-
-  /* ── CODE DISPLAY ── */
   #code-box {
-    display: none; margin-top: 28px;
-    text-align: center; padding: 28px 24px;
+    display: none; margin-top: 28px; text-align: center; padding: 28px 24px;
     background: #0a0c14; border: 1px solid var(--accent);
     border-radius: 16px; box-shadow: 0 0 30px rgba(0,255,224,0.1);
   }
@@ -204,38 +184,34 @@ const PAIR_HTML = `<!DOCTYPE html>
     letter-spacing: 2px; margin-bottom: 16px; }
   #code-display {
     font-family: 'Orbitron', monospace; font-size: 2.6rem; font-weight: 900;
-    color: var(--accent); letter-spacing: 8px; text-shadow: var(--glow);
-    margin-bottom: 16px;
+    color: var(--accent); letter-spacing: 8px; text-shadow: var(--glow); margin-bottom: 20px;
   }
-  #code-box .instructions {
-    color: var(--muted); font-size: 0.82rem; line-height: 1.7;
-  }
-  #code-box .instructions strong { color: var(--text); }
-  .steps { margin-top: 12px; text-align: left; display: inline-block; }
-  .steps li { margin-bottom: 4px; list-style: none; padding-left: 0; }
-  .steps li::before { content: '→ '; color: var(--accent); }
-
-  /* ── EXPIRY ── */
-  #timer { font-size: 0.8rem; color: var(--yellow); margin-top: 12px; font-family: 'Share Tech Mono'; }
-
-  /* ── LOADER ── */
+  /* ── STEPS (how to use the code) ── */
+  .how-title { font-size: 0.8rem; font-weight: 700; color: var(--yellow); text-transform: uppercase;
+    letter-spacing: 1px; margin-bottom: 14px; }
+  .step-list { text-align: left; display: flex; flex-direction: column; gap: 10px; }
+  .step { display: flex; gap: 12px; align-items: flex-start; }
+  .step-num { flex-shrink: 0; width: 24px; height: 24px; border-radius: 50%;
+    background: var(--accent); color: #000; font-size: 0.72rem; font-weight: 900;
+    display: flex; align-items: center; justify-content: center; margin-top: 1px; }
+  .step-text { color: var(--text); font-size: 0.85rem; line-height: 1.5; }
+  .step-text em { color: var(--accent); font-style: normal; font-weight: 700; }
+  .step-warn { background: rgba(255,221,87,0.1); border: 1px solid rgba(255,221,87,0.3);
+    border-radius: 10px; padding: 10px 14px; margin-top: 14px;
+    color: var(--yellow); font-size: 0.8rem; line-height: 1.5; }
+  #timer { font-size: 0.8rem; color: var(--yellow); margin-top: 14px; font-family: 'Share Tech Mono'; }
   .loader { display: inline-block; width: 18px; height: 18px; border: 2px solid #000;
-    border-top-color: transparent; border-radius: 50%; animation: spin 0.7s linear infinite; vertical-align: middle; margin-right: 8px; }
+    border-top-color: transparent; border-radius: 50%; animation: spin 0.7s linear infinite;
+    vertical-align: middle; margin-right: 8px; }
   @keyframes spin { to { transform: rotate(360deg); } }
-
-  /* ── ALERT ── */
   .alert { padding: 12px 16px; border-radius: 10px; font-size: 0.85rem; margin-top: 16px; display: none; }
   .alert.error   { background: rgba(255,85,85,0.12); border: 1px solid var(--red);   color: var(--red); }
   .alert.success { background: rgba(80,250,123,0.1); border: 1px solid var(--green); color: var(--green); }
-
-  /* ── SESSION BADGE ── */
   .session-info { font-size: 0.78rem; color: var(--muted); margin-top: 20px; text-align: center; }
   .badge { display: inline-block; padding: 2px 10px; border-radius: 20px; font-size: 0.72rem; font-weight: 600; }
   .badge.online  { background: rgba(80,250,123,0.15); color: var(--green); }
   .badge.offline { background: rgba(255,85,85,0.15);  color: var(--red); }
   .badge.wait    { background: rgba(255,221,87,0.15); color: var(--yellow); }
-
-  /* ── FOOTER ── */
   footer { margin-top: 48px; color: var(--muted); font-size: 0.78rem; text-align: center; }
 </style>
 </head>
@@ -250,17 +226,17 @@ const PAIR_HTML = `<!DOCTYPE html>
 </nav>
 
 <div class="card">
-  <div class="card-title">Connecter un numéro WhatsApp</div>
-  <p class="card-sub">Entre ton numéro pour recevoir un code de jumelage à 8 chiffres.<br>Aucune installation requise, tout se fait ici.</p>
+  <div class="card-title">Étape 1 — Génère ton code de jumelage</div>
+  <p class="card-sub">Entre ton numéro WhatsApp ci-dessous pour obtenir un code à 8 chiffres.</p>
 
   <div class="field">
     <label>Numéro WhatsApp</label>
     <input type="tel" id="phone" placeholder="Ex: 242053323191" autocomplete="tel" inputmode="tel"/>
-    <div style="font-size:0.75rem;color:var(--muted);margin-top:6px">Format international sans + ni espaces (ex: 33612345678)</div>
+    <div style="font-size:0.75rem;color:var(--muted);margin-top:6px">Sans le + ni espaces — indicatif pays inclus (ex: 33612345678 pour la France)</div>
   </div>
 
   <button id="btn" onclick="getPairingCode()">
-    Obtenir le code de jumelage
+    Générer le code
   </button>
 
   <div class="alert error"   id="err-box"></div>
@@ -269,15 +245,33 @@ const PAIR_HTML = `<!DOCTYPE html>
   <div id="code-box">
     <div class="code-label">🔐 Ton code de jumelage</div>
     <div id="code-display">----</div>
-    <div class="instructions">
-      <strong>Comment l'utiliser :</strong>
-      <ul class="steps">
-        <li>Ouvre WhatsApp sur ton téléphone</li>
-        <li>Va dans <strong>Appareils connectés</strong></li>
-        <li>Appuie sur <strong>Lier un appareil</strong></li>
-        <li>Choisis <strong>"Lier avec un numéro de téléphone"</strong></li>
-        <li>Entre le code ci-dessus</li>
-      </ul>
+
+    <div class="how-title">Étape 2 — Entre ce code dans WhatsApp</div>
+    <div class="step-list">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-text">Ouvre <em>WhatsApp</em> sur ton téléphone</div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-text">Appuie sur les <em>3 points ⋮</em> en haut à droite → <em>Appareils connectés</em></div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-text">Appuie sur <em>Lier un appareil</em></div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-text">⚠️ Tu vois un lecteur QR code — cherche le petit bouton en bas qui dit <em>"Lier avec un numéro de téléphone"</em> et appuie dessus</div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-text">Entre le code affiché ci-dessus (ex: <em>ABCD-1234</em>)</div>
+      </div>
+    </div>
+
+    <div class="step-warn">
+      ⚠️ Le code expire en <strong>2 minutes</strong>. Si tu rates le délai, clique à nouveau sur "Générer le code".
     </div>
     <div id="timer"></div>
   </div>
@@ -312,7 +306,12 @@ function startTimer(seconds) {
   const el = document.getElementById('timer');
   let s = seconds;
   function tick() {
-    if (s <= 0) { clearInterval(timerInterval); el.textContent = '⚠️ Code expiré — génère-en un nouveau.'; el.style.color = '#ff5555'; return; }
+    if (s <= 0) {
+      clearInterval(timerInterval);
+      el.textContent = '⚠️ Code expiré — génère-en un nouveau.';
+      el.style.color = '#ff5555';
+      return;
+    }
     const m = Math.floor(s / 60), sec = s % 60;
     el.textContent = '⏳ Expire dans ' + (m > 0 ? m + 'm ' : '') + sec + 's';
     s--;
@@ -328,7 +327,7 @@ async function getPairingCode() {
 
   const btn = document.getElementById('btn');
   btn.disabled = true;
-  btn.innerHTML = '<span class="loader"></span>Génération en cours...';
+  btn.innerHTML = '<span class="loader"></span>Connexion à WhatsApp...';
   document.getElementById('code-box').style.display = 'none';
 
   try {
@@ -341,7 +340,6 @@ async function getPairingCode() {
 
     if (!res.ok || data.error) throw new Error(data.error || 'Erreur serveur');
 
-    // Format code as XXXX-XXXX
     const raw  = data.code.replace(/[^A-Z0-9]/gi, '').toUpperCase();
     const fmt  = raw.length >= 8 ? raw.slice(0, 4) + '-' + raw.slice(4, 8) : raw;
 
@@ -349,14 +347,14 @@ async function getPairingCode() {
     document.getElementById('code-box').style.display = 'block';
     document.getElementById('session-info').innerHTML =
       'Session: <span class="badge online">' + (data.sessionId || 'main') + '</span>';
-    showSuccess('Code généré pour le numéro +' + phone);
-    startTimer(120); // WhatsApp pairing codes expire in ~2 min
+    showSuccess('Code généré ! Tu as 2 minutes pour l\\'entrer dans WhatsApp.');
+    startTimer(120);
 
   } catch (e) {
     showError(e.message);
   } finally {
     btn.disabled = false;
-    btn.innerHTML = 'Obtenir le code de jumelage';
+    btn.innerHTML = 'Générer le code';
   }
 }
 
@@ -364,12 +362,11 @@ document.getElementById('phone').addEventListener('keydown', e => {
   if (e.key === 'Enter') getPairingCode();
 });
 
-// Check bot status
 async function checkStatus() {
   try {
     const r = await fetch('/stats');
     const d = await r.json();
-    const map = { online: 'online', starting: 'wait', reconnecting: 'wait', offline: 'offline' };
+    const map    = { online: 'online', starting: 'wait', reconnecting: 'wait', offline: 'offline' };
     const labels = { online: '🟢 Bot en ligne', starting: '🟡 Démarrage...', reconnecting: '🟡 Reconnexion...', offline: '🔴 Bot hors ligne' };
     document.getElementById('session-info').innerHTML =
       '<span class="badge ' + (map[d.status] || 'wait') + '">' + (labels[d.status] || d.status) + '</span>';
