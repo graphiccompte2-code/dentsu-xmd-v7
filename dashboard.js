@@ -47,22 +47,6 @@ function getStats() {
 }
 
 // ─── Pairing handler (called by API endpoint) ─────────────────
-async function waitForSocket(sock, timeoutMs = 15000) {
-  // Baileys needs the WS connection to be at least "connecting" before
-  // requestPairingCode can be called. We poll the socket state briefly.
-  return new Promise((resolve, reject) => {
-    const deadline = Date.now() + timeoutMs;
-    const check = () => {
-      // ws.readyState: 0=CONNECTING, 1=OPEN, 2=CLOSING, 3=CLOSED
-      const ws = sock.ws;
-      if (ws && (ws.readyState === 0 || ws.readyState === 1)) return resolve();
-      if (Date.now() > deadline) return reject(new Error('Le bot met trop de temps à se connecter. Vérifie les logs Render.'));
-      setTimeout(check, 500);
-    };
-    check();
-  });
-}
-
 async function requestPairingCode(phoneNumber) {
   const sessions = global.sessions;
   if (!sessions || sessions.size === 0) {
@@ -81,15 +65,13 @@ async function requestPairingCode(phoneNumber) {
   }
 
   if (!targetSock) {
-    throw new Error('Toutes les sessions sont déjà connectées. Ajoute une nouvelle SESSION via les variables d\'environnement Render.');
+    throw new Error('Ce numéro est déjà connecté. Si tu veux ajouter un 2ème numéro, ajoute SESSION_2 dans les variables Render.');
   }
 
   const cleanNum = phoneNumber.replace(/\D/g, '');
   if (!cleanNum || cleanNum.length < 7) throw new Error('Numéro de téléphone invalide.');
 
-  // Wait for WS to be ready before requesting
-  try { await waitForSocket(targetSock, 15000); } catch (e) { throw e; }
-
+  // requestPairingCode works as soon as the socket is created — no need to wait for "open"
   const code = await targetSock.requestPairingCode(cleanNum);
   return { code, sessionId: targetId };
 }
