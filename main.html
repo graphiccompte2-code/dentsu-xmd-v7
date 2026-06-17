@@ -456,8 +456,19 @@
         
         try {
           let { data } = await axios(`/code?number=${bc}`);
-          let code = data.code || "Service Unavailable";
           waitingMessage.style.display = "none";
+
+          // Numéro déjà connecté
+          if (data.status === 'already_connected' || data.status === 'already_paired') {
+            a.innerHTML = '<div style="color:#00f7ff;font-weight:500;background:rgba(0,247,255,0.08);padding:12px;border-radius:8px;border:1px solid rgba(0,247,255,0.3)"><i class="fas fa-check-circle"></i> Ce numéro est déjà connecté. Tapez <b>.menu</b> sur WhatsApp pour démarrer.</div>';
+            return;
+          }
+
+          let code = data.code;
+          if (!code) {
+            a.innerHTML = '<div style="color:var(--accent);font-weight:500;background:rgba(255,42,109,0.1);padding:10px;border-radius:8px;border:1px solid rgba(255,42,109,0.3)"><i class="fas fa-exclamation-triangle"></i> Impossible de générer le code. Réessayez.</div>';
+            return;
+          }
           
           a.innerHTML = `
             <div class="code-display pulse" id="code-display" onclick="Copy()">
@@ -468,7 +479,7 @@
           `;
         } catch (error) {
           waitingMessage.style.display = "none";
-          a.innerHTML = '<div style="color:var(--accent);font-weight:500;background:rgba(255,42,109,0.1);padding:10px;border-radius:8px;border:1px solid rgba(255,42,109,0.3)"><i class="fas fa-exclamation-triangle"></i> Service Unavailable</div>';
+          a.innerHTML = '<div style="color:var(--accent);font-weight:500;background:rgba(255,42,109,0.1);padding:10px;border-radius:8px;border:1px solid rgba(255,42,109,0.3)"><i class="fas fa-exclamation-triangle"></i> Service indisponible. Réessayez dans quelques secondes.</div>';
         }
       }
     });
