@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: dentsu-xmd-v7
+    name: mini-natsu-md
     env: node
     plan: free
     buildCommand: npm install
